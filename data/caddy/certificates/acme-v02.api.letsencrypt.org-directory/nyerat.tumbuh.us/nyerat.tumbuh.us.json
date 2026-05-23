@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"nyerat.tumbuh.us"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/0569ba0d06204a3b6cff61236daf77dedcbd",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3357770366",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-20T01:18:05Z",
+				"end": "2026-07-21T20:28:55Z"
+			},
+			"_uniqueIdentifier": "rkie3IcdRKBv2qLlYHQEeMKcAIA.BWm6DQYgSjts_2Ejba933ty9",
+			"_retryAfter": "2026-05-23T18:11:55.435264224Z",
+			"_selectedTime": "2026-07-21T01:06:48Z"
+		}
+	}
+}

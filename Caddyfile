@@ -1,0 +1,29 @@
+# Default fallback
+:80 {
+    respond "VPS mihsan — OK" 200
+}
+
+# tumbuh.us services
+bot.tumbuh.us {
+    reverse_proxy host.docker.internal:9877
+}
+
+nyerat.tumbuh.us {
+    reverse_proxy nyerat:80
+}
+
+# product-sid.us — tambahkan block baru di bawah sini setiap deploy app baru
+# Contoh:
+# namaapp.product-sid.us {
+#     reverse_proxy nama-container:PORT
+# }
+
+transcribe.product-sid.us {
+    reverse_proxy transcribe:5000
+}
+
+ican.product-sid.us {
+    root * /srv/sites/ican
+    file_server
+    try_files {path} {path}/index.html
+}

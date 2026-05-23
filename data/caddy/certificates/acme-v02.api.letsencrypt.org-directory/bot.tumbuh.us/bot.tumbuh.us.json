@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"bot.tumbuh.us"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/05880b3cfdbed43c374c8edeb61236338410",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3357770366",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-20T01:17:54Z",
+				"end": "2026-07-21T20:28:44Z"
+			},
+			"_uniqueIdentifier": "rkie3IcdRKBv2qLlYHQEeMKcAIA.BYgLPP2-1Dw3TI7ethI2M4QQ",
+			"_retryAfter": "2026-05-23T16:31:01.452963432Z",
+			"_selectedTime": "2026-07-21T09:12:43Z"
+		}
+	}
+}

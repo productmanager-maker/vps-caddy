@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"ican.product-sid.us"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/05eecad504d82d9ab928cbe4d835d74e8cdc",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3357770366",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-21T10:25:34Z",
+				"end": "2026-07-23T05:36:24Z"
+			},
+			"_uniqueIdentifier": "rkie3IcdRKBv2qLlYHQEeMKcAIA.Be7K1QTYLZq5KMvk2DXXTozc",
+			"_retryAfter": "2026-05-23T15:46:53.559223134Z",
+			"_selectedTime": "2026-07-21T19:25:36Z"
+		}
+	}
+}
