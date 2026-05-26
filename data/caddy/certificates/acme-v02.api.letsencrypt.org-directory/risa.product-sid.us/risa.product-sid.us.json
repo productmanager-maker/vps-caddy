@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"risa.product-sid.us"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/06efb37200d1a815ababca93e471fa8a8294",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3357770366",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-24T00:11:36Z",
+				"end": "2026-07-25T19:22:26Z"
+			},
+			"_uniqueIdentifier": "rkie3IcdRKBv2qLlYHQEeMKcAIA.Bu-zcgDRqBWrq8qT5HH6ioKU",
+			"_retryAfter": "2026-05-26T17:18:26.465133851Z",
+			"_selectedTime": "2026-07-25T00:35:09Z"
+		}
+	}
+}

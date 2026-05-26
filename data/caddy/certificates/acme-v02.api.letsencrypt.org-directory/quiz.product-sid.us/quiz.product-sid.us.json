@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"quiz.product-sid.us"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/058ddbad5208ec8803162cc1315776565cca",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3357770366",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-23T08:36:08Z",
+				"end": "2026-07-25T03:46:58Z"
+			},
+			"_uniqueIdentifier": "rkie3IcdRKBv2qLlYHQEeMKcAIA.BY3brVII7IgDFizBMVd2VlzK",
+			"_retryAfter": "2026-05-26T15:33:26.459481936Z",
+			"_selectedTime": "2026-07-24T00:17:49Z"
+		}
+	}
+}

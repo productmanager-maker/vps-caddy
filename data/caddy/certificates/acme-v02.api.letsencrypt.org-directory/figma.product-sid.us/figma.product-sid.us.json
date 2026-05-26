@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"figma.product-sid.us"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/05ef992429ba65aca182d24439264a9bf95b",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3357770366",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-22T00:01:35Z",
+				"end": "2026-07-23T19:12:25Z"
+			},
+			"_uniqueIdentifier": "rkie3IcdRKBv2qLlYHQEeMKcAIA.Be-ZJCm6ZayhgtJEOSZKm_lb",
+			"_retryAfter": "2026-05-26T14:55:48.531178927Z",
+			"_selectedTime": "2026-07-23T13:34:05Z"
+		}
+	}
+}

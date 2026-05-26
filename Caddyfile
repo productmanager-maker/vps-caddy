@@ -12,12 +12,7 @@ nyerat.tumbuh.us {
     reverse_proxy nyerat:80
 }
 
-# product-sid.us — tambahkan block baru di bawah sini setiap deploy app baru
-# Contoh:
-# namaapp.product-sid.us {
-#     reverse_proxy nama-container:PORT
-# }
-
+# product-sid.us
 transcribe.product-sid.us {
     reverse_proxy transcribe:5000
 }
@@ -26,4 +21,31 @@ ican.product-sid.us {
     root * /srv/sites/ican
     file_server
     try_files {path} {path}/index.html
+}
+
+figma.product-sid.us {
+    tls {
+        issuer acme {
+            disable_tlsalpn_challenge
+        }
+    }
+    reverse_proxy host.docker.internal:3030
+}
+
+code.product-sid.us {
+    reverse_proxy code-server:8443
+}
+
+terminal.product-sid.us {
+    reverse_proxy host.docker.internal:7681
+}
+
+
+quiz.product-sid.us {
+    reverse_proxy quiz:3500
+}
+
+
+risa.product-sid.us {
+    reverse_proxy risa:5001
 }

@@ -1,0 +1,19 @@
+{
+	"sans": [
+		"terminal.product-sid.us"
+	],
+	"issuer_data": {
+		"url": "https://acme-v02.api.letsencrypt.org/acme/cert/064d0e5889af335f7b71d24720782070f655",
+		"ca": "https://acme-v02.api.letsencrypt.org/directory",
+		"account": "https://acme-v02.api.letsencrypt.org/acme/acct/3357770366",
+		"renewal_info": {
+			"suggestedWindow": {
+				"start": "2026-07-23T02:29:08Z",
+				"end": "2026-07-24T21:39:58Z"
+			},
+			"_uniqueIdentifier": "rkie3IcdRKBv2qLlYHQEeMKcAIA.Bk0OWImvM197cdJHIHggcPZV",
+			"_retryAfter": "2026-05-26T18:56:12.53547461Z",
+			"_selectedTime": "2026-07-23T21:47:58Z"
+		}
+	}
+}
