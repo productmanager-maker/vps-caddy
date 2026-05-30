@@ -19,8 +19,33 @@ transcribe.product-sid.us {
 
 ican.product-sid.us {
     root * /srv/sites/ican
-    file_server
-    try_files {path} {path}/index.html
+
+    handle /cermindiri/api/* {
+        uri strip_prefix /cermindiri/api
+        reverse_proxy host.docker.internal:3042
+    }
+
+    handle /cermindiri/bpd/* {
+        root * /srv/sites/ican
+        try_files {path} /cermindiri/bpd/index.html
+        file_server
+    }
+
+    handle /cermindiri/* {
+        root * /srv/sites/ican
+        try_files {path} /cermindiri/index.html
+        file_server
+    }
+
+    handle /trip/api/* {
+        uri strip_prefix /trip/api
+        reverse_proxy host.docker.internal:3041
+    }
+
+    handle {
+        file_server
+        try_files {path} {path}/index.html
+    }
 }
 
 figma.product-sid.us {
@@ -37,15 +62,66 @@ code.product-sid.us {
 }
 
 terminal.product-sid.us {
-    reverse_proxy host.docker.internal:7681
+    basicauth {
+        ican $2a$14$LVKY47UdE8EeExwO1WmC6Onn.6vuNgqRZBpDlCz.60prBo9VzNcYi
+    }
+    handle /t/0/* {
+        reverse_proxy host.docker.internal:7681
+    }
+    handle /t/1/* {
+        reverse_proxy host.docker.internal:7682
+    }
+    handle /t/2/* {
+        reverse_proxy host.docker.internal:7683
+    }
+    handle /t/3/* {
+        reverse_proxy host.docker.internal:7684
+    }
+    handle /t/4/* {
+        reverse_proxy host.docker.internal:7685
+    }
+    handle /t/5/* {
+        reverse_proxy host.docker.internal:7686
+    }
+    handle /t/6/* {
+        reverse_proxy host.docker.internal:7687
+    }
+    handle /t/7/* {
+        reverse_proxy host.docker.internal:7688
+    }
+    handle {
+        reverse_proxy host.docker.internal:7680
+    }
 }
-
 
 quiz.product-sid.us {
     reverse_proxy quiz:3500
 }
 
-
 risa.product-sid.us {
     reverse_proxy risa:5001
+}
+
+ytdrive.product-sid.us {
+    reverse_proxy ytdrive:3600
+}
+
+app.product-sid.us {
+    reverse_proxy app:5002
+}
+
+project.product-sid.us {
+    root * /srv/sites/project
+    handle {
+        file_server
+        try_files {path} {path}/index.html
+    }
+}
+
+notepad.product-sid.us {
+    root * /srv/sites/ican/notepad
+    handle {
+        file_server
+        try_files {path} {path}/index.html
+    }
 }
