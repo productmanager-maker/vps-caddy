@@ -31,6 +31,12 @@ ican.product-sid.us {
         file_server
     }
 
+    handle /cermindiri/general/* {
+        root * /srv/sites/ican
+        try_files {path} /cermindiri/general/index.html
+        file_server
+    }
+
     handle /cermindiri/* {
         root * /srv/sites/ican
         try_files {path} /cermindiri/index.html
@@ -62,6 +68,16 @@ code.product-sid.us {
 }
 
 terminal.product-sid.us {
+    handle /auth {
+        reverse_proxy host.docker.internal:7680 {
+            header_up X-Manager-Token "4f7eeb804fc1bd6788aeed535c939e919c513ca90ca3299ed6239d415501c913"
+        }
+    }
+    handle /ping {
+        reverse_proxy host.docker.internal:7680 {
+            header_up X-Manager-Token "4f7eeb804fc1bd6788aeed535c939e919c513ca90ca3299ed6239d415501c913"
+        }
+    }
     basicauth {
         ican $2a$14$LVKY47UdE8EeExwO1WmC6Onn.6vuNgqRZBpDlCz.60prBo9VzNcYi
     }
@@ -90,7 +106,9 @@ terminal.product-sid.us {
         reverse_proxy host.docker.internal:7688
     }
     handle {
-        reverse_proxy host.docker.internal:7680
+        reverse_proxy host.docker.internal:7680 {
+            header_up X-Manager-Token "4f7eeb804fc1bd6788aeed535c939e919c513ca90ca3299ed6239d415501c913"
+        }
     }
 }
 
@@ -124,4 +142,20 @@ notepad.product-sid.us {
         file_server
         try_files {path} {path}/index.html
     }
+}
+
+figma-mcp.product-sid.us {
+    reverse_proxy 172.18.0.1:8787
+}
+
+supporthq.product-sid.us {
+    reverse_proxy host.docker.internal:3010
+}
+
+crm.product-sid.us {
+    reverse_proxy host.docker.internal:3011
+}
+
+aksara.product-sid.us {
+    reverse_proxy aksara:80
 }
