@@ -1,9 +1,7 @@
-# Default fallback
 :80 {
     respond "VPS mihsan — OK" 200
 }
 
-# tumbuh.us services
 bot.tumbuh.us {
     reverse_proxy host.docker.internal:9877
 }
@@ -12,103 +10,113 @@ nyerat.tumbuh.us {
     reverse_proxy nyerat:80
 }
 
-# product-sid.us
 transcribe.product-sid.us {
     reverse_proxy transcribe:5000
 }
 
 ican.product-sid.us {
     root * /srv/sites/ican
-
     handle /cermindiri/api/* {
         uri strip_prefix /cermindiri/api
         reverse_proxy host.docker.internal:3042
     }
-
     handle /cermindiri/bpd/* {
         root * /srv/sites/ican
         try_files {path} /cermindiri/bpd/index.html
         file_server
     }
-
     handle /cermindiri/general/* {
         root * /srv/sites/ican
         try_files {path} /cermindiri/general/index.html
         file_server
     }
-
     handle /cermindiri/* {
         root * /srv/sites/ican
         try_files {path} /cermindiri/index.html
         file_server
     }
-
+    handle /uangkeluar/api/* {
+        uri strip_prefix /uangkeluar/api
+        reverse_proxy host.docker.internal:3043
+    }
     handle /trip/api/* {
         uri strip_prefix /trip/api
         reverse_proxy host.docker.internal:3041
     }
-
+    handle /expert/* {
+        reverse_proxy host.docker.internal:3002
+    }
     handle {
         file_server
         try_files {path} {path}/index.html
     }
 }
 
-figma.product-sid.us {
-    tls {
-        issuer acme {
-            disable_tlsalpn_challenge
-        }
-    }
-    reverse_proxy host.docker.internal:3030
-}
-
 code.product-sid.us {
     reverse_proxy code-server:8443
 }
 
+reset.product-sid.us {
+    respond 200 {
+        body "<!DOCTYPE html><html><head><meta charset=UTF-8><meta name=viewport content='width=device-width,initial-scale=1'><title>Reset Cache</title><style>body{font-family:system-ui;background:#1e1e2e;color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}.card{background:#fff;color:#111;padding:40px;border-radius:12px;text-align:center;max-width:400px}h1{margin:0 0 16px;font-size:24px}p{color:#666;margin:0 0 24px}.btn{display:inline-block;padding:12px 32px;background:#2F5AF3;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s}.btn:hover{background:#1e42c9}</style></head><body><div class=card><h1>Clear Cache</h1><p>Click button to clear browser cache and reload</p><button class=btn onclick='clearAndGo()'>Clear & Go to Code</button></div><script>function clearAndGo(){localStorage.clear();sessionStorage.clear();document.cookie.split(';').forEach(c=>{const eqPos=c.indexOf('=');const name=eqPos>-1?c.substr(0,eqPos).trim():c.trim();document.cookie=name+'=;expires=Thu,01 Jan 1970 00:00:00 UTC;path=/;'});setTimeout(()=>window.location='https://code.product-sid.us/',500);}</script></body></html>"
+    }
+}
+
 terminal.product-sid.us {
-    handle /auth {
-        reverse_proxy host.docker.internal:7680 {
-            header_up X-Manager-Token "4f7eeb804fc1bd6788aeed535c939e919c513ca90ca3299ed6239d415501c913"
-        }
+    @noreset not path /reset.html
+    basic_auth @noreset {
+        ican $2a$14$xQtQXk/UmV.UNZDiyCtJLu1t7FuVp7gWHGE/2g8lkKne.n5mzjwMq
     }
-    handle /ping {
-        reverse_proxy host.docker.internal:7680 {
-            header_up X-Manager-Token "4f7eeb804fc1bd6788aeed535c939e919c513ca90ca3299ed6239d415501c913"
-        }
-    }
-    basicauth {
-        ican $2a$14$LVKY47UdE8EeExwO1WmC6Onn.6vuNgqRZBpDlCz.60prBo9VzNcYi
+    handle /t/0 {
+        reverse_proxy host.docker.internal:7681
     }
     handle /t/0/* {
         reverse_proxy host.docker.internal:7681
     }
+    handle /t/1 {
+        reverse_proxy host.docker.internal:7682
+    }
     handle /t/1/* {
         reverse_proxy host.docker.internal:7682
+    }
+    handle /t/2 {
+        reverse_proxy host.docker.internal:7683
     }
     handle /t/2/* {
         reverse_proxy host.docker.internal:7683
     }
+    handle /t/3 {
+        reverse_proxy host.docker.internal:7684
+    }
     handle /t/3/* {
         reverse_proxy host.docker.internal:7684
+    }
+    handle /t/4 {
+        reverse_proxy host.docker.internal:7685
     }
     handle /t/4/* {
         reverse_proxy host.docker.internal:7685
     }
+    handle /t/5 {
+        reverse_proxy host.docker.internal:7686
+    }
     handle /t/5/* {
         reverse_proxy host.docker.internal:7686
     }
+    handle /t/6 {
+        reverse_proxy host.docker.internal:7687
+    }
     handle /t/6/* {
         reverse_proxy host.docker.internal:7687
+    }
+    handle /t/7 {
+        reverse_proxy host.docker.internal:7688
     }
     handle /t/7/* {
         reverse_proxy host.docker.internal:7688
     }
     handle {
-        reverse_proxy host.docker.internal:7680 {
-            header_up X-Manager-Token "4f7eeb804fc1bd6788aeed535c939e919c513ca90ca3299ed6239d415501c913"
-        }
+        reverse_proxy host.docker.internal:7680
     }
 }
 
@@ -124,12 +132,21 @@ ytdrive.product-sid.us {
     reverse_proxy ytdrive:3600
 }
 
-app.product-sid.us {
+prototype.product-sid.us {
     reverse_proxy app:5002
+}
+
+app.product-sid.us {
+    redir https://prototype.product-sid.us{uri} 301
 }
 
 project.product-sid.us {
     root * /srv/sites/project
+    @zips path_regexp zipfiles \.zip$
+    handle @zips {
+        header Content-Disposition "attachment"
+        file_server
+    }
     handle {
         file_server
         try_files {path} {path}/index.html
@@ -148,14 +165,70 @@ figma-mcp.product-sid.us {
     reverse_proxy 172.18.0.1:8787
 }
 
-supporthq.product-sid.us {
-    reverse_proxy host.docker.internal:3010
-}
-
-crm.product-sid.us {
-    reverse_proxy host.docker.internal:3011
-}
-
 aksara.product-sid.us {
+    handle /aksara_revamp.md {
+        root * /srv/sites
+        file_server
+    }
     reverse_proxy aksara:80
 }
+
+quiztime.product-sid.us {
+    root * /srv/sites/quiztime
+    handle {
+        file_server
+        try_files {path} {path}/index.html
+    }
+}
+
+db.product-sid.us {
+    basic_auth {
+        ihsanugraha $2a$14$0BGF97RGo4b2meod2806kuYhU02vZLX6qT5t0VSCdsWURVcjuYYIe
+    }
+    reverse_proxy adminer:8080
+}
+
+files.product-sid.us {
+    basic_auth {
+        ican $2a$14$xQtQXk/UmV.UNZDiyCtJLu1t7FuVp7gWHGE/2g8lkKne.n5mzjwMq
+    }
+    reverse_proxy filebrowser:80
+}
+
+roadmap.product-sid.us {
+    root * /srv/sites/roadmap
+    handle {
+        file_server
+        try_files {path} {path}/index.html
+    }
+}
+
+kantinmu.product-sid.us {
+    handle /midtrans* {
+        reverse_proxy midtrans-monitor:80
+    }
+}
+
+dock.product-sid.us {
+    root * /srv/sites/dock
+    handle /app* {
+        reverse_proxy dock:3050
+    }
+    handle /api/* {
+        reverse_proxy dock:3050
+    }
+    file_server
+}
+
+workflow.product-sid.us {
+    root * /srv/sites/workflow
+    file_server
+}
+
+
+
+
+prodform.product-sid.us {
+    reverse_proxy host.docker.internal:3050
+}
+
